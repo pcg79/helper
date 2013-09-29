@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+if File.exists?('Gemfile')
+  require 'bundler'
+  Bundler.setup
+  Bundler.require
+else
+  require 'helper'
+end
+
+require 'helper/cli'
+
+cli = Helper::CLI.new(ARGV)
+supervisor = cli.run
+
+trap("INT") {supervisor.terminate; exit 0}
+trap("TERM") {supervisor.terminate; exit 0}
+sleep
