@@ -6,7 +6,7 @@ module Helper
       @room = room
       @router = router
 
-      run!
+      self.async.run
     end
 
     def run
