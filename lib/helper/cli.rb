@@ -61,7 +61,11 @@ module Helper
     end
 
     def connection
-      @connection = Sparks.new config.subdomain, config.token, verify_mode: OpenSSL::SSL::VERIFY_NONE
+      @connection = Sparks.new config.subdomain, config.token, {
+        verify_mode: OpenSSL::SSL::VERIFY_NONE,
+        socket_class: Celluloid::IO::TCPSocket,
+        ssl_socket_class: Celluloid::IO::SSLSocket
+      }
     end
 
     def register_handlers

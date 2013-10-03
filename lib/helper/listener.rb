@@ -1,6 +1,6 @@
 module Helper
   class Listener
-    include Celluloid
+    include Celluloid::IO
 
     def initialize(room, router)
       @room = room
