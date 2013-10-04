@@ -13,7 +13,7 @@ module Helper
       log("Watching #{@room.name}")
 
       @room.watch do |message|
-        log("Recived message: #{message}")
+        log("Received message: #{message}")
 
         @router.handler_for(message).respond(@room)
       end

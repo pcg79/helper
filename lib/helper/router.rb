@@ -5,12 +5,12 @@ module Helper
       @routes = []
     end
 
-    def noop
-      Helper::Handlers::Noop.new
+    def noop(message)
+      Helper::Handlers::Noop.new(message)
     end
 
     def handler_for(message)
-      return noop unless message[:body].to_s.start_with?(@bot_name)
+      return noop(message) unless message[:body].to_s.start_with?(@bot_name)
 
       message_body = message[:body].to_s.gsub(@bot_name, '').strip
 
@@ -20,7 +20,7 @@ module Helper
         end
       end
 
-      noop
+      noop(message)
     end
 
     def add_route(pattern, handler)
